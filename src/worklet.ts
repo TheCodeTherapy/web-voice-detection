@@ -40,8 +40,6 @@ class Processor extends AudioWorkletProcessor {
   _stopProcessing = false;
   options: WorkletOptions;
 
-  port!: MessagePort;
-
   constructor(options: { processorOptions: WorkletOptions }) {
     super();
     this.options = options.processorOptions as WorkletOptions;
