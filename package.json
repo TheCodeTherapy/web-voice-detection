@@ -1,0 +1,62 @@
+{
+  "name": "web-voice-detection",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean",
+    "build": "npm run lint && tsc --emitDeclarationOnly --outDir ./dist && node esbuild.config.js",
+    "postinstall": "npm run build",
+    "build:example": "npm run build && vite build --config example/vite.config.ts",
+    "serve:example": "npm run build:example && vite --config example/vite.config.ts",
+    "dev": "npm run build && concurrently \"npm:watch:lib\" \"npm:watch:example\"",
+    "watch:lib": "esbuild --watch ./src/index.ts --outdir=./dist --bundle --sourcemap",
+    "watch:example": "npm run clean && npm run build && vite --config example/vite.config.ts",
+    "lint": "eslint \"**/*.{ts,tsx}\" --ignore-path .gitignore",
+    "lintfix": "eslint \"**/*.{ts,tsx}\" --ignore-path .gitignore --fix"
+  },
+  "keywords": [
+    "web voice detection",
+    "voice detection",
+    "voice activity detection",
+    "vad",
+    "speech recognition",
+    "AI",
+    "web audio",
+    "onnxruntime",
+    "webassembly",
+    "wasm",
+    "web",
+    "browser",
+    "javascript",
+    "typescript"
+  ],
+  "author": "Marco Gomez (TheCodeTherapy)",
+  "license": "MIT",
+  "description": "A WebAssembly-powered Voice Activity Detection library for the browser.",
+  "dependencies": {
+    "d3-scale-chromatic": "^3.1.0",
+    "onnxruntime-web": "^1.19.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.4",
+    "@typescript-eslint/eslint-plugin": "7.9.0",
+    "@typescript-eslint/parser": "7.9.0",
+    "concurrently": "^9.0.1",
+    "esbuild": "^0.24.0",
+    "eslint": "8.57.0",
+    "eslint-config-airbnb-typescript": "18.0.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-import-resolver-typescript": "3.6.1",
+    "eslint-plugin-import": "2.29.1",
+    "eslint-plugin-prettier": "5.1.3",
+    "eslint-plugin-react": "7.34.1",
+    "eslint-plugin-react-hooks": "4.6.2",
+    "prettier": "3.2.5",
+    "rimraf": "5.0.7",
+    "tsx": "4.10.2",
+    "typescript": "^5.5.0",
+    "vite": "^5.4.8"
+  }
+}
