@@ -1,11 +1,11 @@
 {
   "name": "web-voice-detection",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "clean": "rimraf dist",
-    "prebuild": "npm run clean",
+    "prebuild": "",
     "build": "npm run lint && tsc --emitDeclarationOnly --outDir ./dist && node esbuild.config.js",
     "postinstall": "npm run build",
     "build:example": "npm run build && vite build --config example/vite.config.ts",
