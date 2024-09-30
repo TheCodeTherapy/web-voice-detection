@@ -1,8 +1,14 @@
 # Web Voice Detection
 
-![Web Voice Detection](assets/screenshot.png)
+![Web Voice Detection](https://raw.githubusercontent.com/TheCodeTherapy/web-voice-detection/b751bedcde49e1bc4db9c478a155b7f8940d788b/assets/screenshot.png)
 
 This project demonstrates real-time voice activity detection in a web browser using a pre-trained ONNX model with WebAssembly. It captures audio from the user's microphone, processes it to identify speech segments, and provides callbacks for speech start and end events, among some other potentially useful data.
+
+## Live Demo
+
+### You can check the demo running live [here](https://thecodetherapy.github.io/test-voice-detection/).
+
+The Live Demo app repository can be found [here](https://github.com/TheCodeTherapy/test-voice-detection).
 
 ## Features
 
