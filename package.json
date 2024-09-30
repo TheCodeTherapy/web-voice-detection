@@ -37,14 +37,14 @@
   "description": "A WebAssembly-powered Voice Activity Detection library for the browser.",
   "dependencies": {
     "d3-scale-chromatic": "^3.1.0",
-    "onnxruntime-web": "^1.19.2"
+    "onnxruntime-web": "^1.19.2",
+    "esbuild": "^0.24.0"
   },
   "devDependencies": {
     "@types/node": "^22.7.4",
     "@typescript-eslint/eslint-plugin": "7.9.0",
     "@typescript-eslint/parser": "7.9.0",
     "concurrently": "^9.0.1",
-    "esbuild": "^0.24.0",
     "eslint": "8.57.0",
     "eslint-config-airbnb-typescript": "18.0.0",
     "eslint-config-prettier": "9.1.0",
