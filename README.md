@@ -4,6 +4,8 @@
 
 This project demonstrates real-time voice activity detection in a web browser using a pre-trained ONNX model with WebAssembly. It captures audio from the user's microphone, processes it to identify speech segments, and provides callbacks for speech start and end events, among some other potentially useful data.
 
+Please feel free to ask me questions about it (or to tweet me memes) on X [@TheCodeTherapy](https://x.com/TheCodeTherapy)
+
 ## Live Demo
 
 ### You can check the demo running live [here](https://thecodetherapy.github.io/test-voice-detection/).
@@ -18,20 +20,41 @@ The Live Demo app repository can be found [here](https://github.com/TheCodeThera
 - Callbacks for speech start, speech end, and misfire events.
 - Integration with Web Audio API for audio processing.
 
-## Getting Started
+## Usage
 
-### To check the example code running on your browser:
+- Install the package
 
 ```bash
-git clone https://github.com/TheCodeTherapy/web-voice-detection.git
+npm install web-voice-detection
+```
 
-cd web-voice-detection
+- Usage example
 
-nvm install $(cat .nvmrc)
+```typescript
+const detection = await Detect.new({
+  onSpeechStart: () => {
+    statusDiv.textContent = "Speech detected!";
+  },
+  onSpeechEnd: (arr: Float32Array) => {
+    statusDiv.textContent = "Speech ended.";
 
-npm install
-
-npm run watch:example
+    // uses provided util to encode WAV from the Float32Array
+    const wavBuffer = utils.encodeWAV(arr);
+    // converts array buffer to base64 string
+    const base64 = utils.arrayBufferToBase64(wavBuffer);
+    // converts to base64 data URL
+    const url = `data:audio/wav;base64,${base64}`;
+    // do whatever you want with the wav audio url
+    appendAudioElement(url);
+  },
+  onMisfire: () => {
+    statusDiv.textContent = "Misfire!";
+  },
+  onFFTProcessed: (fftData) => {
+    // you can use the FFT data to draw a visualizer
+  },
+  fftSize: 1024, // whatever reasonable size you want
+});
 ```
 
 ### Configuration
@@ -54,6 +77,29 @@ You can customize the behavior of Detect using various options. Refer to the Rea
 
 - `negativeSpeechThreshold`: Probability threshold for detecting non-speech (default: 0.35).
 
+
+## Diving into the source code
+
+### To check the example code running on your browser from source locally:
+
+```bash
+git clone https://github.com/TheCodeTherapy/web-voice-detection.git
+
+cd web-voice-detection
+
+nvm install $(cat .nvmrc)
+
+npm install
+
+npm run watch:example
+```
+
 ### Examples
 
 The example directory contains a basic example demonstrating how to use the Detect class.
+
+You can also check a the demo repository that consumes this library as an npm package [here](https://github.com/TheCodeTherapy/test-voice-detection).
+
+### License
+
+This project is licensed under the MIT License
